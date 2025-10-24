@@ -4,6 +4,7 @@
 node_modules
 dist
 .cache
+js/config.js
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,jetbrains,webstorm
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,jetbrains,webstorm
