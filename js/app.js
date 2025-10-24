@@ -8,14 +8,8 @@
 
 // Hämta kattbild från api
 
-// Skapa lista på cursed authors: Ronald Reagan, Ayn Rand, Colin Powell,
-
 // Hämta citat  från api
 // Funktion som:
-// -kollar om author är cursed och i så fall:
-// -hämtar ut quote och ersätter varje ord med "meow"
-// -hämtar ut den som sa det, uppdaterar namn och sparar i variabel
-// -om author ej är cursed:
 // -hämtar ut quote och sparar i variabel
 // -hämtar ut den som sa det, uppdaterar namn och sparar i variabel
 // -returnerar variabler
@@ -27,16 +21,27 @@
 // Och diven author fylls med author
 // Om knappen klickas igen så ska divarna fyllas med nytt random innehåll
 
-const catUrl =
+const catUrl = "https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=beng&api_key=" + config.apiKey;
 
-const zenUrl ="https://zenquotes.io/api/random/";
-
-async function getapi(url)
+async function getCat(url)
 {
   const response = await fetch(url);
   var data = await response.json();
   console.log(data);
 }
 
-getapi(zenUrl);
+getCat(catUrl);
+
+const proxy = "https://api.allorigins.win/raw?url=";
+const zenUrl ="https://zenquotes.io/api/random/";
+
+async function getZen(url)
+{
+  const response = await fetch(proxy + encodeURIComponent(url));
+  var data = await response.json();
+  console.log(data);
+}
+
+getZen(zenUrl);
+
 
