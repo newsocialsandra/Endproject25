@@ -21,6 +21,8 @@
 // Och diven author fylls med author
 // Om knappen klickas igen så ska divarna fyllas med nytt random innehåll
 
+
+// Hämta data från Katt-API
 const catUrl = "https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=beng&api_key=" + config.apiKey;
 
 async function getCat(url)
@@ -32,8 +34,14 @@ async function getCat(url)
 
 getCat(catUrl);
 
+
+// Funktion för att hämta data från Zen API
+
+const theme = "life"//"HÄMTA FRÅN OPTION VALUE I DROPDOWNMENYN"
+
 const proxy = "https://api.allorigins.win/raw?url=";
-const zenUrl ="https://zenquotes.io/api/random/";
+const randomQuote ="https://zenquotes.io/api/random/";
+const themeQuote = "https://zenquotes.io/api/quotes/keyword=" + theme;
 
 async function getZen(url)
 {
@@ -41,7 +49,6 @@ async function getZen(url)
   var data = await response.json();
   console.log(data);
 }
-
-getZen(zenUrl);
+getZen(randomQuote);
 
 

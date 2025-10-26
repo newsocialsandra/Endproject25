@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>Wise cats - quotes by famous kitties</title>
   <link rel="stylesheet" href="css/style.css">
   <meta name="description" content="">
 
@@ -25,12 +25,25 @@
 <body>
   <!-- Add your site or application content here -->
   <h1>Wise cats</h1>
-
+  <p id="cat emoji">🐱</p>
   <p>Whenever you need guidance in life, we're here for you.</p>
-  <button id="generate">Get advice</button>
+  <button id="generate">Get wisdom</button>
   <div id="catpic"></div>
   <div id="random quote"></div>
   <div id="author"></div>
+
+  <h2>Search depending on theme:</h2>
+  <p>Need more specific inspiration? Choose a theme that feels ~right~ and get wisdom tailored to your needs.</p>
+  <select id="mood">
+    <option value="anxiety">anxiety</option>
+    <option value="courage">courage</option>
+    <option value="change">change</option>
+    <option value="forgiveness">forgiveness</option>
+    <option value="future">future</option>
+    <option value="life">life</option>
+  </select>
+  <button id="generate-specific">Search wisdom</button>
+
   <script src="js/config.js"></script>
   <script src="js/app.js"></script>
 
