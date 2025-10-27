@@ -6,8 +6,6 @@
 
 // TODO
 
-// Hämta kattbild från api
-
 // Hämta citat  från api
 // Funktion som:
 // -hämtar ut quote och sparar i variabel
@@ -23,16 +21,19 @@
 
 
 // Hämta data från Katt-API
-const catUrl = "https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=beng&api_key=" + config.apiKey;
+
+// Hämtar katter från vald kattras:
+// const catBreed = "https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=beng&api_key=" + config.apiKey;
+
+// Hämtar random kattbild:
+const catUrl = "https://api.thecatapi.com/v1/images/search";
 
 async function getCat(url)
 {
   const response = await fetch(url);
   var data = await response.json();
-  console.log(data);
+  return data[0].url;
 }
-
-getCat(catUrl);
 
 
 // Funktion för att hämta data från Zen API
@@ -51,4 +52,19 @@ async function getZen(url)
 }
 getZen(randomQuote);
 
+// Variables to access divs
+const catPicDiv = document.getElementById("catPic");
+
+
+// Lyssnar efter onclick på button id generate:
+
+document.getElementById("generate").addEventListener("click", async() => {
+  const imgUrl = await getCat(catUrl);
+  const img = document.createElement("img");
+  img.src = imgUrl;
+  img.alt = "Wise cat";
+  img.style.maxWidth = "400px";
+  catPicDiv.innerHTML = "";
+  catPicDiv.appendChild(img);
+});
 
