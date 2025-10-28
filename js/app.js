@@ -27,7 +27,13 @@ async function getZen(url)
   const data = await response.json();
   let authorName = data[0].a;
   let nameSplit = authorName.split(" ");
-  nameSplit[1] = "Meow";
+  const catNames = ["Meow", "The Kitty Cat", "Whiskers"];
+  const random = Math.floor(Math.random() * catNames.length);
+  if (nameSplit.length === 1) {
+    nameSplit.push(catNames[random]);
+  } else {
+  nameSplit[nameSplit.length - 1] = catNames[random];
+    }
   const newAuthorName = nameSplit.join(" ");
 
   return {
@@ -68,3 +74,4 @@ document.getElementById("generateSpecific").addEventListener("click", async() =>
   themeDiv.innerHTML = `"${quote}"`;
   themeAuth.innerHTML = `– ${author}`;
 })
+
