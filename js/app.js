@@ -38,7 +38,7 @@ async function getCat(url)
 
 const theme = "life"//"HÄMTA FRÅN OPTION VALUE I DROPDOWNMENYN"
 
-const proxy = "https://api.allorigins.win/raw?url=";
+const proxy = "https://corsproxy.io/?";
 const randomQuote ="https://zenquotes.io/api/random/";
 const themeQuote = "https://zenquotes.io/api/quotes/keyword=" + theme;
 
@@ -50,7 +50,6 @@ async function getZen(url)
   let nameSplit = authorName.split(" ");
   nameSplit[1] = "Meow";
   const newAuthorName = nameSplit.join(" ");
-  console.log(newAuthorName);
 
   return {
     quote: data[0].q,
@@ -67,17 +66,15 @@ const authorDiv = document.getElementById("author");
 
 document.getElementById("generate").addEventListener("click", async() => {
   const imgUrl = await getCat(catUrl);
-  const quoteText = await getZen(randomQuote);
-
+  const {quote, author} = await getZen(randomQuote);
   const img = document.createElement("img");
   img.src = imgUrl;
   img.alt = "Wise cat";
   catPicDiv.innerHTML = "";
   catPicDiv.appendChild(img);
 
-  const {quote, author} = await getZen(randomQuote);
   quoteDiv.innerHTML = `"${quote}"`;
   authorDiv.innerHTML = `– ${author}`;
-  
+
 });
 
