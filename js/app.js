@@ -6,9 +6,7 @@
 
 // TODO
 
-// Hämta citat  från api
 // Funktion som:
-// -hämtar ut quote och sparar i variabel
 // -hämtar ut den som sa det, uppdaterar namn och sparar i variabel
 // -returnerar variabler
 
@@ -47,24 +45,39 @@ const themeQuote = "https://zenquotes.io/api/quotes/keyword=" + theme;
 async function getZen(url)
 {
   const response = await fetch(proxy + encodeURIComponent(url));
-  var data = await response.json();
-  console.log(data);
+  const data = await response.json();
+  let authorName = data[0].a;
+  let nameSplit = authorName.split(" ");
+  nameSplit[1] = "Meow";
+  const newAuthorName = nameSplit.join(" ");
+  console.log(newAuthorName);
+
+  return {
+    quote: data[0].q,
+    author: newAuthorName,
+  };
 }
-getZen(randomQuote);
 
 // Variables to access divs
 const catPicDiv = document.getElementById("catPic");
-
+const quoteDiv = document.getElementById("randomQuote");
+const authorDiv = document.getElementById("author");
 
 // Lyssnar efter onclick på button id generate:
 
 document.getElementById("generate").addEventListener("click", async() => {
   const imgUrl = await getCat(catUrl);
+  const quoteText = await getZen(randomQuote);
+
   const img = document.createElement("img");
   img.src = imgUrl;
   img.alt = "Wise cat";
-  img.style.maxWidth = "400px";
   catPicDiv.innerHTML = "";
   catPicDiv.appendChild(img);
+
+  const {quote, author} = await getZen(randomQuote);
+  quoteDiv.innerHTML = `"${quote}"`;
+  authorDiv.innerHTML = `– ${author}`;
+  
 });
 
