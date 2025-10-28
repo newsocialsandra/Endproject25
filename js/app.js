@@ -6,22 +6,6 @@
 
 // TODO
 
-// Funktion som:
-// -hämtar ut den som sa det, uppdaterar namn och sparar i variabel
-// -returnerar variabler
-
-
-// Skapa onclick-listener för knapp
-// När knappen klickas ska diven catpic fyllas med en bild på en random katt
-// Och diven random quote ska fyllas med citatet
-// Och diven author fylls med author
-// Om knappen klickas igen så ska divarna fyllas med nytt random innehåll
-
-
-// Hämta data från Katt-API
-
-// Hämtar katter från vald kattras:
-// const catBreed = "https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=beng&api_key=" + config.apiKey;
 
 // Hämtar random kattbild:
 const catUrl = "https://api.thecatapi.com/v1/images/search";
@@ -33,14 +17,9 @@ async function getCat(url)
   return data[0].url;
 }
 
-
 // Funktion för att hämta data från Zen API
-
-const theme = "life"//"HÄMTA FRÅN OPTION VALUE I DROPDOWNMENYN"
-
 const proxy = "https://corsproxy.io/?";
 const randomQuote ="https://zenquotes.io/api/random/";
-const themeQuote = "https://zenquotes.io/api/quotes/keyword=" + theme;
 
 async function getZen(url)
 {
@@ -78,3 +57,12 @@ document.getElementById("generate").addEventListener("click", async() => {
 
 });
 
+// Lyssnar efter onclick på button id generate specific
+document.getElementById("generateSpecific").addEventListener("click", async() => {
+  const getTheme = document.getElementById("mood");
+  const theme = getTheme.value;
+  const themeQuote = "https://zenquotes.io/api/quotes/keyword=" + theme;
+  const quote = await getZen(themeQuote);
+  const cleanedQuote = quote.quote;
+  console.log(cleanedQuote);
+})
