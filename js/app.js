@@ -40,6 +40,8 @@ async function getZen(url)
 const catPicDiv = document.getElementById("catPic");
 const quoteDiv = document.getElementById("randomQuote");
 const authorDiv = document.getElementById("author");
+const themeDiv = document.getElementById("themeQuote");
+const themeAuth = document.getElementById("themeAuth");
 
 // Lyssnar efter onclick på button id generate:
 
@@ -62,7 +64,7 @@ document.getElementById("generateSpecific").addEventListener("click", async() =>
   const getTheme = document.getElementById("mood");
   const theme = getTheme.value;
   const themeQuote = "https://zenquotes.io/api/quotes/keyword=" + theme;
-  const quote = await getZen(themeQuote);
-  const cleanedQuote = quote.quote;
-  console.log(cleanedQuote);
+  const {quote, author} = await getZen(themeQuote);
+  themeDiv.innerHTML = `"${quote}"`;
+  themeAuth.innerHTML = `– ${author}`;
 })
