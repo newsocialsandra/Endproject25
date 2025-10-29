@@ -35,7 +35,8 @@ button {
   background-color: #ffcc80;
   border: none;
   padding: 0.6rem 1rem;
-  margin: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
@@ -47,8 +48,13 @@ button:hover {
 }
 
 h1 {
+  margin-bottom: 0.5rem;
   margin-top: 1rem;
   font-size: 2rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
 }
 
 /* BEHÖVS DETTA html? Annars rensa */
