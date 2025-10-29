@@ -18,6 +18,16 @@ function catifyName(name) {
   return nameSplit.join(" ");
 }
 
+// Funktion för att skapa kort med citat till theme quote
+function createQuoteCard(quote, author) {
+  const card = document.createElement("div");
+  card.classList.add("quote-card");
+  card.innerHTML =
+    `<p>${quote}</p>
+     <p class ="author">– ${author}</p>`;
+  return card;
+}
+
 // Funktion för att skapa tre "kort" för att visa sökresultat
 function showResults(quotes, container) {
   container.innerHTML = "";
@@ -96,12 +106,12 @@ document.getElementById("generate").addEventListener("click", async() => {
 // Hämtar citat på temat, puttar in i div
 
 document.getElementById("generateSpecific").addEventListener("click", async() => {
-  const getTheme = document.getElementById("mood");
-  const theme = getTheme.value;
+  const theme = document.getElementById("mood").value;
   const themeQuote = "https://zenquotes.io/api/quotes/keyword=" + theme;
   const {quote, author} = await getZen(themeQuote);
-  themeDiv.innerHTML = `"${quote}"`;
-  themeAuth.innerHTML = `– ${author}`;
+  themeDiv.innerHTML = "";
+  const card = createQuoteCard(quote, author);
+  themeDiv.appendChild(card);
 })
 
 // Lyssnar efter klick på searchBtn
