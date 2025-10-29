@@ -83,11 +83,14 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
-  margin-top: 1rem;
+  width: 90%;
+  max-width: none;
+  margin: 0 auto;
 }
 
 .quote-card {
   background: white;
+  max-width: 300px;
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
