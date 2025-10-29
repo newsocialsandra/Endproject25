@@ -1,11 +1,3 @@
-// PLAN:
-
-// När man klickar på get advice-knapp så får man upp random kattbild
-// och random zenquote
-// och namn på den som sagt det, men med "Meow", "Kitty" eller "Whiskers" i namnet
-
-// TODO
-
 
 // Hämtar random kattbild:
 const catUrl = "https://api.thecatapi.com/v1/images/search";
@@ -18,6 +10,7 @@ async function getCat(url)
 }
 
 // Funktion för att hämta data från Zen API
+// Proxy och encodeURIComponent för att komma runt problem med CORS
 const proxy = "https://corsproxy.io/?";
 const randomQuote ="https://zenquotes.io/api/random/";
 
@@ -25,6 +18,8 @@ async function getZen(url)
 {
   const response = await fetch(proxy + encodeURIComponent(url));
   const data = await response.json();
+
+  // LÄGG DETTA I FUNKTION SOM KAN ÅTERANVÄNDAS:
   let authorName = data[0].a;
   let nameSplit = authorName.split(" ");
   const catNames = ["Meow", "The Kitty Cat", "Whiskers"];
@@ -35,6 +30,7 @@ async function getZen(url)
   nameSplit[nameSplit.length - 1] = catNames[random];
     }
   const newAuthorName = nameSplit.join(" ");
+  // RETURNERA NEWAUTHORNAME
 
   return {
     quote: data[0].q,
@@ -49,7 +45,9 @@ const authorDiv = document.getElementById("author");
 const themeDiv = document.getElementById("themeQuote");
 const themeAuth = document.getElementById("themeAuth");
 
-// Lyssnar efter onclick på button id generate:
+// Lyssnar efter onclick på button id generate
+// Plockar ut kattbild, quote och författare
+// Rensar ev. innehåll i divar, Lägger in kattbild, quote och författare
 
 document.getElementById("generate").addEventListener("click", async() => {
   const imgUrl = await getCat(catUrl);
@@ -66,6 +64,9 @@ document.getElementById("generate").addEventListener("click", async() => {
 });
 
 // Lyssnar efter onclick på button id generate specific
+// Plockar ut valt value från dropdown, lägger till i api endpoint
+// Hämtar citat på temat, puttar in i div
+
 document.getElementById("generateSpecific").addEventListener("click", async() => {
   const getTheme = document.getElementById("mood");
   const theme = getTheme.value;

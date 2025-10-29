@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wise cats - quotes by famous kitties</title>
+  <!-- Länk till stylesheet -->
   <link rel="stylesheet" href="css/style.css">
   <meta name="description" content="">
 
@@ -28,6 +29,8 @@
   </div>
   <h1>🐱 Wise cats 🐱</h1>
   <p>Whenever you need guidance in life, we're here for you.</p>
+
+  <!-- Knapp för Get wisdom-funktion och divar att lägga innehåll i via app.js-->
   <button id="generate">Get wisdom</button>
   <div id="catPic"></div>
   <div id="randomQuote"></div>
@@ -35,6 +38,7 @@
 
   <h2>Search depending on theme:</h2>
   <p>Need more specific inspiration? Choose a theme that feels ~right~ and get wisdom tailored to your needs.</p>
+  <!-- Dropdown-meny för att välja tema, knapp för att söka och divar att lägga innehåll i -->
   <select id="mood">
     <option value="anxiety">anxiety</option>
     <option value="courage">courage</option>
@@ -48,9 +52,14 @@
   <div id="themeAuth"></div>
 
   <h2>Search by name:</h2>
+  <!-- Sökfält och knapp för att söka
+  div för att visa tre kort från start och sen kort baserat på sökningen -->
   <input id="searchInput" type="text" placeholder="Search for name...">
   <button id="searchBtn">Search</button>
   <div id="searchResults" class="grid"></div>
+
+  <!-- Koppling till config-fil som innehåller API-nyckel (som jag sedan inte använde...)
+  samt app.js -->
 
   <script src="js/config.js"></script>
   <script src="js/app.js"></script>
