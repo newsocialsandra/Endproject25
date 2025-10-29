@@ -1,5 +1,11 @@
-// Funktion för att kattifiera författarnamn:
+// Proxy och endpoint för randomquote från Zen API
+const proxy = "https://corsproxy.io/?";
+const randomQuote ="https://zenquotes.io/api/random/";
 
+// Endpoint för random kattbild från The Cat API
+const catUrl = "https://api.thecatapi.com/v1/images/search";
+
+// Funktion för att kattifiera författarnamn:
 function catifyName(name) {
   const catNames = ["Meow", "The Kitty Cat", "Whiskers"];
   const nameSplit = name.split(" ");
@@ -12,40 +18,44 @@ function catifyName(name) {
   return nameSplit.join(" ");
 }
 
+// Funktion för att skapa tre "kort" för att visa sökresultat
+function showResults(quotes, container) {
+  container.innerHTML = "";
+  quotes.slice(0, 3).forEach(q => {
+    const card = document.createElement("div");
+    card.classList.add("quote-card");
+    const author = catifyName(q.a);
+    card.innerHTML = `
+      <p>"${q.q}"</p>
+      <p class="author">– ${author}</p>
+    `;
+    container.appendChild(card);
+  });
+}
 
 // Funktion för att hämta random kattbild från The Cat API:
-const catUrl = "https://api.thecatapi.com/v1/images/search";
-
-async function getCat(url)
-{
+async function getCat(url) {
   const response = await fetch(url);
   var data = await response.json();
   return data[0].url;
 }
 
-// Funktion för att hämta data från Zen API
-// Proxy och encodeURIComponent för att komma runt problem med CORS
-const proxy = "https://corsproxy.io/?";
-const randomQuote ="https://zenquotes.io/api/random/";
-
-async function getZen(url)
-{
+// Funktion för att hämta ett random citat från Zen API
+// encodeURIComponent för att komma runt problem med CORS
+async function getZen(url) {
   const response = await fetch(proxy + encodeURIComponent(url));
   const data = await response.json();
 
   const authorName = data[0].a;
   const newAuthorName = catifyName(authorName);
-  
+
   return {
     quote: data[0].q,
     author: newAuthorName,
   };
 }
 
-
-
-// Funktion för att hämta flera slumpcitat och lägga dem i en lista:
-const amount = 10;
+// Funktion för att hämta flera random citat och lägga dem i en lista:
 async function getQuotesBatch(amount) {
   let allQuotes = [];
   for (let i = 0; i < amount; i++) {
@@ -56,13 +66,13 @@ async function getQuotesBatch(amount) {
   return allQuotes;
 };
 
-
 // Variables to access divs
 const catPicDiv = document.getElementById("catPic");
 const quoteDiv = document.getElementById("randomQuote");
 const authorDiv = document.getElementById("author");
 const themeDiv = document.getElementById("themeQuote");
 const themeAuth = document.getElementById("themeAuth");
+const searchContainer = document.getElementById("searchResults");
 
 // Lyssnar efter onclick på button id generate
 // Plockar ut kattbild, quote och författare
@@ -79,7 +89,6 @@ document.getElementById("generate").addEventListener("click", async() => {
 
   quoteDiv.innerHTML = `"${quote}"`;
   authorDiv.innerHTML = `– ${author}`;
-
 });
 
 // Lyssnar efter onclick på button id generate specific
@@ -95,3 +104,21 @@ document.getElementById("generateSpecific").addEventListener("click", async() =>
   themeAuth.innerHTML = `– ${author}`;
 })
 
+// Lyssnar efter klick på searchBtn
+// Hämtar inskrivet keyword från sökrutan
+// Filtrerar listan med slumpmässiga citat på keyword
+// Fyller searchContainer med resultat
+document.getElementById("searchBtn").addEventListener("click", () => {
+  const keyword = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = allQuotes.filter(q =>
+    q.a.toLowerCase().includes(keyword)
+  );
+  showResults(filtered, searchContainer);
+});
+
+// Fyll sökresultats-diven med några förvalda citatkort när sidan laddas
+let allQuotes = [];
+window.addEventListener("DOMContentLoaded", async () => {
+  allQuotes = await getQuotesBatch(10);
+  showResults(allQuotes, searchContainer);
+});
