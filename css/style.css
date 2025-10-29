@@ -11,6 +11,58 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+/* Lite basic styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fafafa;
+  color: #333;
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* EVENTUELLT HA DETTA. Väljer alla (*) barn till body (>)
+body > * {
+  width: 100%;
+  max-width: 700px;
+}
+ */
+
+button {
+  background-color: #ffcc80;
+  border: none;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #ffb74d;
+}
+
+h1 {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+/* BEHÖVS DETTA html? Annars rensa */
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+p {
+  max-width: 600px;
+  line-height: 1.5;
+}
+
 #catPic {
   max-width: 400px;
 }
@@ -18,17 +70,39 @@
 #catPic img {
   max-width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 1rem 0;
   display: block;
 
 }
 
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
+/* Fixar utseende på citatkorten längst ner */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
+.quote-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.quote-card p {
+  margin: 0.3rem 0;
+}
+
+.author {
+  font-style: italic;
+  font-weight: bold;
+  color: #555;
+}
 
 /*
  * Remove text-shadow in selection highlight:
@@ -179,6 +253,18 @@ textarea {
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {font-size: 1.2rem;}
+}
 
 @media only screen and (min-width: 35em) {
   /* Style adjustments for viewports that meet the condition */
