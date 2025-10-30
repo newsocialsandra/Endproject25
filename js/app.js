@@ -22,9 +22,10 @@ function catifyName(name) {
 function createQuoteCard(quote, author) {
   const card = document.createElement("div");
   card.classList.add("quote-card");
-  card.innerHTML =
-    `<p>${quote}</p>
-     <p class ="author">– ${author}</p>`;
+  card.innerHTML = `
+    <p>${quote}</p>
+    <p class ="author">– ${author}</p>
+    `;
   return card;
 }
 
@@ -36,10 +37,20 @@ function showResults(quotes, container) {
     card.classList.add("quote-card");
     const author = catifyName(q.a);
     card.innerHTML = `
-      <p>"${q.q}"</p>
+      <div class="card-inner">
+      <div class="card-front">
       <p class="author">– ${author}</p>
+    </div>
+      <div class="card-back">
+      <p>"${q.q}"</p>
+      </div>
+    </div>
     `;
     container.appendChild(card);
+    // Vänd kortet när man klickar på det:
+    card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+});
   });
 }
 
