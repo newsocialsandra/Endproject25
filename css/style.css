@@ -24,12 +24,8 @@ body {
   text-align: center;
 }
 
-/* EVENTUELLT HA DETTA. Väljer alla (*) barn till body (>)
-body > * {
-  width: 100%;
-  max-width: 700px;
-}
- */
+
+
 
 button {
   background-color: #ffcc80;
@@ -57,7 +53,6 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
-/* BEHÖVS DETTA html? Annars rensa */
 html {
   color: #222;
   font-size: 1em;
@@ -73,6 +68,7 @@ p {
   max-width: 400px;
 }
 
+
 #catPic img {
   max-width: 100%;
   height: auto;
@@ -82,6 +78,22 @@ p {
   display: block;
 
 }
+
+/* Grid för att visa kort i sökresultat */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 250px));
+  gap: 4rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  margin-bottom: 4rem;
+}
+
+/* Fixar utseende på citatkort  */
 
 .theme-card {
   background: white;
@@ -93,7 +105,33 @@ p {
   max-width: 400px;
 }
 
-/* Fixar utseende på citatkorten längst ner */
+.quote-card {
+  position: relative;
+  background: transparent;
+  cursor: pointer;
+  height: 180px;
+  max-width: 300px;
+  padding: 0;
+  perspective: 1000px;
+  border-radius: 12px;
+  box-shadow: none;
+  text-align: left;
+  width: 250px;
+}
+
+.quote-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.quote-card p {
+  margin: 0.3rem 0;
+}
+
+.author {
+  font-style: italic;
+  font-weight: bold;
+  color: #555;
+}
 
 .card-front, .card-back {
   position: absolute;
@@ -126,46 +164,6 @@ p {
   height: 100%;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 250px));
-  gap: 4rem;
-  justify-content: center;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  margin-bottom: 4rem;
-}
-
-.quote-card {
-  position: relative;
-  background: transparent;
-  cursor: pointer;
-  height: 180px;
-  max-width: 300px;
-  padding: 0;
-  perspective: 1000px;
-  border-radius: 12px;
-  box-shadow: none;
-  text-align: left;
-  width: 250px;
-}
-
-.quote-card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
-.quote-card p {
-  margin: 0.3rem 0;
-}
-
-.author {
-  font-style: italic;
-  font-weight: bold;
-  color: #555;
 }
 
 /*
