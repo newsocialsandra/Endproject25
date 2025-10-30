@@ -7,7 +7,7 @@ const catUrl = "https://api.thecatapi.com/v1/images/search";
 
 // Funktion för att kattifiera författarnamn:
 function catifyName(name) {
-  const catNames = ["Meow", "The Kitty Cat", "Whiskers"];
+  const catNames = ["Meow", "The Kitty Cat", "Whiskers", "Mc Paw", "Claw-a-lot", "Litterbox", "Small Paws"];
   const nameSplit = name.split(" ");
   const random = Math.floor(Math.random() * catNames.length);
   if (nameSplit.length > 1) {
@@ -21,7 +21,7 @@ function catifyName(name) {
 // Funktion för att skapa kort med citat till theme quote
 function createQuoteCard(quote, author) {
   const card = document.createElement("div");
-  card.classList.add("quote-card");
+  card.classList.add("theme-card");
   card.innerHTML = `
     <p>${quote}</p>
     <p class ="author">– ${author}</p>

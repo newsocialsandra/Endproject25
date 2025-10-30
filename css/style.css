@@ -83,6 +83,16 @@ p {
 
 }
 
+.theme-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  text-align: center;
+  max-width: 400px;
+}
+
 /* Fixar utseende på citatkorten längst ner */
 
 .card-front, .card-back {
